@@ -1,0 +1,64 @@
+SelectAll;
+doDelete;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "base";
+rotate -9 0 0 ;
+scale 1 .9 1.5;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "midTail";
+move 0 0 -1.3;
+rotate 17.4 0 0 ;
+scale .7 .7 1.1;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "tailEnd";
+move 0 .3 -2.4;
+rotate -14.7 0 0;
+scale .6 .5 .9;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "tailFinLeft";
+move .5 .1 -3.3;
+rotate -13.5 24.9 -5.8;
+scale .6 .2 .3;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "tailFinRight";
+move -.5 .1 -3.3;
+rotate -13.5 -24.9 5.8;
+scale .6 .2 .3;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "frontFinLeft";
+move .9 -.7 -.3;
+rotate 17.9 70.4 -28.2;
+scale .7 .2 .3;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "frontFinRight";
+move -.9 -.7 -.3;
+rotate 17.9 -70.4 28.2;
+scale .7 .2 .3;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "eyeLeft";
+move .9 -.3 .3;
+rotate 0 0 0;
+scale .1 .1 .1;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "eyeRight";
+move -.9 -.3 .3;
+rotate 0 0 0;
+scale .1 .1 .1;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "bottomJaw";
+move 0 -.4 .9;
+rotate -24.3 0 0;
+scale .7 .4 .8;
+
+SelectAll;
+move -r 0 1 0;
