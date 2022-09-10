@@ -1,0 +1,33 @@
+SelectAll;
+doDelete;
+
+//snowballs
+polySphere -radius 1 -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -cuv 2 -ch 1;
+duplicate -rr;
+move -r 0 1.2 0 ;
+scale -r .8 .8 .8;
+duplicate -rr;
+move -r 0 1 0 ;
+scale -r .8 .8 .8;
+
+//face
+polySphere -radius .1 -subdivisionsX 8 -subdivisionsY 8 -axis -1 1 -2 -cuv 2 -ch 1;
+move -r -.25 2.4 -.55;
+polySphere -radius .1 -subdivisionsX 8 -subdivisionsY 8 -axis 1 1 -2 -cuv 2 -ch 1;
+move -r .2 2.5 -.5;
+polyCone -r .1 -h .5 -sx 20 -sy 1 -sz 0 -ax -.2 0 -1 -rcp 0 -cuv 3 -ch 1;
+move -r -.1 2.3 -.8;
+
+//buttons
+polySphere -radius .07 -subdivisionsX 8 -subdivisionsY 8 -axis 0 0 -1 -cuv 2 -ch 1;
+move -r 0 1.2 -.8;
+duplicate -rr;
+move -r .05 -.2 .03;
+duplicate -rr;
+move -r -.1 .5 .02;
+
+//arms
+polyCylinder -r .05 -h 1 -sx 20 -sy 1 -sz 1 -ax -2 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r -1 1.7 0 ;
+polyCylinder -r .05 -h 1 -sx 20 -sy 1 -sz 1 -ax 2 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r 1 1.7 0 ;
