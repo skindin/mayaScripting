@@ -1,0 +1,71 @@
+SelectAll;
+doDelete;
+
+int $isAdult = 1;
+int $isMale = 1;
+int $isUndead = 0;
+
+float $size = 1f;
+float $headSize = 1;
+float $bodySize = 1;
+
+float $childHeadSize = .7;
+float $childBodySize = .5;
+
+if ($isAdult == 0)
+{
+    $headSize = $childHeadSize;
+    $bodySize = $childBodySize;
+}
+
+polyCube -w .8 -h .8 -d .8 -sx 1 -sy 1 -sz 1 -ax 0 1 0;
+move 0 (2.8 * $bodySize) 0;
+rename "Head";
+
+polyCube -w .8 -h 1.2 -d .4 -sx 1 -sy 1 -sz 1 -ax 0 1 0;
+rename "Torso";
+move 0 (1.8 * $bodySize) 0;
+
+float $width = .4;
+if ($isMale == 0)
+{
+    $width = .3;
+}
+float $armXPos = ($width/2 + .4) * $bodySize;
+
+polyCube -w $width -h 1.2 -d .4 -sx 1 -sy 1 -sz 1 -ax 0 1 0;
+if (!$isUndead)
+{
+    move $armXPos (1.8 * $bodySize) 0;
+}
+else
+{
+    move $armXPos (2.2 * $bodySize) (.4 * $bodySize);
+    rotate 90 0 0;
+}
+
+rename "ArmL";
+
+duplicate;
+move -r (0 - 2*$armXPos) 0 0;
+rename "ArmR";
+
+polyCube -w .4 -h 1.2 -d .4 -sx 1 -sy 1 -sz 1 -ax 0 1 0;
+move (.2 * $bodySize) (.6 * $bodySize) 0;
+rename "LegL";
+
+duplicate;
+move -r (-.4 * $bodySize) 0 0;
+rename "LegR";
+
+if ($isAdult == 0)
+{
+    SelectAll;
+    select -tgl Head ;
+    scale -r $childBodySize $childBodySize $childBodySize;
+
+    select -r Head;
+    scale -r $childHeadSize $childHeadSize $childHeadSize;
+}
+
+select -cl;
