@@ -1,0 +1,23 @@
+SelectAll;
+doDelete;
+
+float $stairLength = 1;
+float $stairWidth = 2;
+float $stairHeight = .2;
+float $stairOffset = 0;
+
+float $stepHeight = .2;
+float $stepRotation = 30;
+
+int $stepCount = 20;
+
+polyCube -w $stairWidth -h $stairHeight -d $stairLength -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -r (-$stairWidth/2) ($stairHeight/2) ($stairLength/2);
+xform -rp ($stairOffset + $stairWidth/2) 0 (-$stairLength/2);
+
+for ($i = 0; $i < $stepCount; $i++)
+{
+    duplicate;
+    move -r 0 ($stairHeight + $stepHeight) 0;
+    rotate -r 0 $stepRotation 0;
+}
