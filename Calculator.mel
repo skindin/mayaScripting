@@ -1,50 +1,149 @@
 proc string Sum (float $nums[])
 {
-    string $answer= "";
+    string $text= "";
+    float $answer = 0;
     int $size = size($nums);
-    for (int $i; $i < $size; $i++)
+    for ($i = 0; $i < $size; ++$i)
     {
-        
+        float $num = $nums[$i];
+        $text += $num;
+        $answer += $num;
+        if ($i < $size-1)
+        {
+            $text += " + ";
+        }
     }
 
-    return $answer;
-}
+    $text += " = " + $answer + "\n";
 
-proc string Diff (float $a, float $b)
+    return $text;
+}
+proc string Diff (float $nums[])
 {
-    string $answer = $a + " - " + $b + " = " + ($a-$b);
+    string $text= "";
+    float $answer = 0;
+    int $size = size($nums);
+    for ($i = 0; $i < $size; ++$i)
+    {
+        float $num = $nums[$i];
+        $text += $num;
+        $answer -= $num;
+        if ($i < $size-1)
+        {
+            $text += " - ";
+        }
+    }
 
-    return $answer;
+    $text += " = " + $answer + "\n";
+
+    return $text;
 }
 
-proc string Multiply (float $a, float $b)
+proc string Mult (float $nums[])
 {
-    string $answer = $a + " * " + $b + " = " + ($a*$b);
+    string $text= "";
+    float $answer = 1;
+    int $size = size($nums);
+    for ($i = 0; $i < $size; ++$i)
+    {
+        float $num = $nums[$i];
+        $text += $num;
+        $answer *= $num;
+        if ($i < $size-1)
+        {
+            $text += " * ";
+        }
+    }
 
-    return $answer;
+    $text += " = " + $answer + "\n";
+
+    return $text;
 }
 
-proc string Divide (float $a, float $b)
+proc string Divide (float $nums[])
 {
-    string $answer = $a + " / " + $b + " = " + ($a+$b);
+    string $text = $nums[0] + " / ";
+    float $answer = $nums[0];
+    int $size = size($nums);
+    for ($i = 1; $i < $size; ++$i)
+    {
+        float $num = $nums[$i];
+        $text += $num;
+        $answer /= $num;
+        if ($i < $size-1)
+        {
+            $text += " / ";
+        }
+    }
 
-    return $answer;
+    $text += " = " + $answer + "\n";
+
+    return $text;
 }
 
-proc string Power (float $a, float $b)
+proc string Power (float $a, float $x)
 {
-    string $answer = $a + "^" + $b + " = " + (pow ($a, $b));
+    string $answer = $a + "^" + $x + " = " + (pow ($a, $x)) + "\n";
 
     return $answer;
 }
 
-proc string Mean (float $a, float $b)
+proc string Mean (float $nums[])
 {
-    string $answer = "Mean of " + $a + " and " + $b + " is " + (($a+$b)/2);
+    string $text= "The mean of ";
+    float $total = 0;
+    int $size = size($nums);
+    for ($i = 0; $i < $size; ++$i)
+    {
+        float $num = $nums[$i];
+        $text += $num;
+        $total += $num;
+        if ($i < $size-1)
+        {
+            $text += ", ";
+        }
+    }
 
-    return $answer;
+    $answer = $total / $size;
+
+    $text += " is " + $answer + "\n";
+
+    return $text;
 }
 
+proc string Median (float $nums[])
+{
+    int $size = size($nums);
+    int $half = $size / 2;
+    int $remainder = $size % 2;
+    float $median;
 
+    $nums = sort($nums);
 
-print (Power({1,1,1,1}));
+    if ($remainder == 0)
+    {
+        $median = ($nums[$half-1] + $nums[$half]) / 2;
+    }
+    else
+    {
+        $median = $nums[$half];
+    }
+
+    string $text = "The median of ";
+
+    for ($i = 0; $i < $size; ++$i)
+    {
+        float $num = $nums[$i];
+        $text += $num;
+        if ($i < $size-1)
+        {
+            $text += ", ";
+        }
+    }
+
+    $text += " is " + $median + "\n";
+
+    return $text;
+}
+
+print (Power(5,2));
