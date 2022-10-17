@@ -1,4 +1,12 @@
-proc string Sum (float $nums[])
+int $sumId = 0;
+int $diffId = 1;
+int $multId = 2;
+int $divId = 3;
+
+float $finalAnswer;
+string $textAnswer;
+
+proc float Sum (float $nums[])
 {
     string $text= "";
     float $answer = 0;
@@ -16,14 +24,14 @@ proc string Sum (float $nums[])
 
     $text += " = " + $answer + "\n";
 
-    return $text;
+    return $answer;
 }
-proc string Diff (float $nums[])
+proc float Diff (float $nums[])
 {
     string $text= "";
-    float $answer = 0;
+    float $answer = $nums[0];
     int $size = size($nums);
-    for ($i = 0; $i < $size; ++$i)
+    for ($i = 1; $i < $size; ++$i)
     {
         float $num = $nums[$i];
         $text += $num;
@@ -36,10 +44,10 @@ proc string Diff (float $nums[])
 
     $text += " = " + $answer + "\n";
 
-    return $text;
+    return $answer;
 }
 
-proc string Mult (float $nums[])
+proc float Mult (float $nums[])
 {
     string $text= "";
     float $answer = 1;
@@ -57,10 +65,10 @@ proc string Mult (float $nums[])
 
     $text += " = " + $answer + "\n";
 
-    return $text;
+    return $answer;
 }
 
-proc string Divide (float $nums[])
+proc float Divide (float $nums[])
 {
     string $text = $nums[0] + " / ";
     float $answer = $nums[0];
@@ -78,7 +86,7 @@ proc string Divide (float $nums[])
 
     $text += " = " + $answer + "\n";
 
-    return $text;
+    return $answer;
 }
 
 proc string Power (float $a, float $x)
@@ -146,4 +154,41 @@ proc string Median (float $nums[])
     return $text;
 }
 
-print (Power(5,2));
+proc void Operation (float $num, int $opId)
+{
+    $textAnswer = $finalAnswer + "";
+
+    if ($opId == $sumId)
+    {
+        $finalAnswer = Sum({$answer,$num});
+        $textAnswer += " + " + $num;
+    }
+
+    if ($opId == $diffId)
+    {
+        $finalAnswer = Diff({$finalAnswer,$num});
+        $textAnswer += " - " + $num;
+    }
+
+    if ($opId == $multId)
+    {
+        $finalAnswer = Mult({$finalAnswer,$num});
+        $textAnswer += " * " + $num;
+    }
+
+    if ($opId == $divId)
+    {
+        $finalAnswer = Divide({$finalAnswer,$num});
+        $textAnswer += " / " + $num;
+    }
+}
+
+proc void Equals ()
+{
+    $textAnswer = " = " + $finalAnswer;
+}
+
+$finalAnswer = 5;
+
+Operation(6,$sumId);
+Equals();

@@ -1,0 +1,64 @@
+string $problemText = "5*5*5/5*5/5";
+
+string $sSets[] = stringToStringArray($problemText, "-");
+
+float $answer;
+
+int $sSize = size($sSets);
+for ($s = 0; $s < $sSize; $s++)
+{
+    string $aSets[] = stringToStringArray($sSets[$s], "+");
+
+    float $aResult = 0;
+
+    int $aSize = size($aSets);
+    for ($a = 0; $a < $aSize; $a++)
+    {
+        string $dSets[] = stringToStringArray($aSets[$a], "/");
+
+        float $dResult;
+
+        int $dSize = size($dSets);
+        for ($d = 0; $d < $dSize; $d++)
+        {
+            string $mSets[] = stringToStringArray($dSets[$d], "*");
+
+            float $mResult = 1;
+
+            int $mSize = size($mSets);
+            for ($m = 0; $m < $mSize; $m++)
+            {
+                $mResult *= (float)$mSets[$m];
+            }
+
+            if ($d == 0)
+            {
+                $dResult = $mResult;
+            }
+            else
+            {
+                $dResult /= $mResult;
+            }
+        }
+
+        if ($a == 0)
+        {
+            $aResult = $dResult;
+        }
+        else
+        {
+            $aResult += $dResult;
+        }
+    }
+
+    if ($s == 0)
+    {
+        $answer = $aResult;
+    }
+    else
+    {
+        $answer -= $aResult;
+    }
+}
+
+print($problemText + "=" + $answer + "\n");
