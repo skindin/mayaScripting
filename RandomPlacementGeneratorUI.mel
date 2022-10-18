@@ -1,0 +1,77 @@
+proc float[] RandomPos (float $maxRange)
+{
+    $x = rand(-$maxRange,$maxRange);
+    $y = rand(-$maxRange,$maxRange);
+    $z = rand(-$maxRange,$maxRange);
+    float $pos[] = {$x, $y, $z};
+
+    return $pos;
+}
+
+proc SetPos (string $obj, float $pos[])
+{
+    move $pos[0] $pos[1] $pos[2] $obj;
+}
+
+proc SetRandomPos (string $obj, float $maxRange)
+{
+    float $pos[] = RandomPos($maxRange);
+    SetPos($obj,$pos);
+}
+
+proc RandSelectedObjPositions (float $maxRange)
+{
+    string $objs[] = `ls -sl`;
+
+    int $size = size($objs);
+
+    for ($i = 0; $i < $size; ++$i)
+    {
+        SetRandomPos($objs[$i],$maxRange);
+    }
+}
+
+proc DupAllAndRandPositions (int $dupCount, float $maxRange)
+{
+    for ($i = 0; $i < $dupCount; ++$i)
+    {
+        duplicate;
+
+        RandSelectedObjPositions($maxRange);
+    }
+}
+
+proc CreateWindow ()
+{
+    string $myWindow = "DupAndRandWindow";
+
+    if (`window -exists $myWindow`)
+    {
+        deleteUI $myWindow;
+    }
+
+    window -title "Duplicate And Randomize Positions" -widthHeight 300 200 $myWindow;
+        // columnLayout;
+        // columnLayout -adjustableColumn true;
+        string $myColumn = `columnLayout -parent $myWindow -adjustableColumn 1`;
+        text -label "Duplication Count" -align "left";
+        optionVar -stringValue "dupCountField" `intField -parent $myColumn`;
+        text -label "Random Bound Size" -align "left";
+        optionVar -stringValue "boundSizeField" `floatField -parent $myColumn`;
+        button -label "Run" -command "ButtonCommand";
+        //optionVar -stringValue "resultField" `textField -parent $myColumn -editable 0`;
+    showWindow $myWindow;
+}
+
+global proc ButtonCommand ()
+{
+    string $dupCountField = `optionVar -q "dupCountField"`;
+    int $dupCount = `intField -q -value $dupCountField`;
+
+    string $boundSizeField = `optionVar -q "boundSizeField"`;
+    float $boundSize = `floatField -q -value $boundSizeField`;
+
+    DupAllAndRandPositions($dupCount, $boundSize);
+}
+
+CreateWindow();
